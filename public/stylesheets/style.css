@@ -1,8 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('http://fonts.cdnfonts.com/css/pokemon-solid');
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+.topnav {
+  overflow: hidden;
+  background-color: blue;
+}
+
+.topnav a {
+  float: left;
+  color: yellow;
+  text-align: center;
+  padding: 14px 16px;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: red;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: Black;
+  color: white;
+}
+
 a {
   color: #00B7FF;
+}
+
+h1 {
+  font-family: 'Pokemon Solid', sans-serif;
+  font-size: 60px;
+  text-align: center;
 }
