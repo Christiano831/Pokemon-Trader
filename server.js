@@ -7,7 +7,7 @@ const methodOverride = require('method-override');
 
 require('./config/database');
 var indexRouter = require('./routes/index');
-var pokemonsRouter = require('./routes/pokemons');
+var tradesRouter = require('./routes/trades');
 
 var app = express();
 
@@ -23,7 +23,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/pokemons', pokemonsRouter);
+app.use('/trades', tradesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
