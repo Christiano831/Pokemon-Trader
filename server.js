@@ -6,6 +6,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const Pokedex = require('pokeapi-js-wrapper');
 const P = new Pokedex.Pokedex();
+const axios = require('axios').default;
+
 
 const session = require('express-session');
 const passport = require('passport');
