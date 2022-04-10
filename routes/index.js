@@ -14,6 +14,7 @@ router.get('/', function(req, res, next) {
   }
   request(options, function(err, response, body) {
     const userData = JSON.parse(body);
+    console.log(userData.sprites.other['official-artwork'].front_default)
     res.render('index', { 
       title: 'Pokemon Trader Hub',
       pokeName: userData

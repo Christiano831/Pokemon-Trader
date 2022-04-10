@@ -14,6 +14,8 @@ const passport = require('passport');
 const methodOverride = require('method-override');
 var indexRouter = require('./routes/index');
 var tradesRouter = require('./routes/trades');
+const offersRouter = require('./routes/offers')
+const requestsRouter = require('./routes/requests')
 
 var app = express();
 
@@ -53,6 +55,8 @@ app.use(function (req, res, next) {
 
 app.use('/', indexRouter);
 app.use('/trades', tradesRouter);
+app.use('/offers', offersRouter);
+app.use('/requests', requestsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
