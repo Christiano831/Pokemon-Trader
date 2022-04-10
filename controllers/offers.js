@@ -2,8 +2,10 @@ const Offer = require('../models/offer');
 
 
 module.exports = {
-    //create,
-    index
+    index,
+    create,
+    new: newOffer,
+    show
 }
 
 function index(req, res) {
@@ -15,10 +17,20 @@ function index(req, res) {
     });
 }
 
-// function create(req, res) {
-//     const offer = Offer(req.body);
-//     offer.save(function(err) {
-//         if (err) return res.render('offers/new');
-//         res.redirect('/offers/new');
-//     })
-// }
+function create(req, res) {
+    const offer = Offer(req.body);
+    offer.save(function(err) {
+        if (err) return res.render('offers/new');
+        res.redirect('/offers/new');
+    })
+}
+
+function newOffer(req, res) {
+    res.render('offers/new', {title: "Add Offer"})
+}
+
+function show(req, res) {
+    Offer.findById(req.params.id, function(err, tickets) {
+        res.render('offers/show', {title: 'Offer Details'})
+    })
+}
