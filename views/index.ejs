@@ -10,6 +10,11 @@
       <a class="active" href="../">Home</a>
       <a href="offers/index">Search Pokemon Offers</a>
       <a href="requests/index">Request Trade</a>
+      <% if (user) { %>
+        <a href="/logout">LOG OUT</a>
+      <% } else { %>
+        <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
+      <% } %>
     </div>
     <h1><%= title %></h1>
     <p>Here you can search a pokemon you are looking for!</p>
