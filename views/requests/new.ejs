@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Requests</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="topnav">
+      <a href="../">Home</a>
+      <a href="../offers/index">Search Pokemon Offers</a>
+      <a href="../requests/index">Request Trade</a>
+      <% if (user) { %>
+        <a href="/logout">LOG OUT</a>
+      <% } else { %>
+        <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
+      <% } %>
+    </div>
+
+
+    <h1><%= title %> </h1>
+    <p>When making a request please include as much details as possible for others.</p>
+    <p>Example: </p>
+    <p>Pokemon being requested. Level. Gender. Shiny. Pokemon offers</p>
+    <br>
+    <form action="/requests" method="POST">
+      <label>Pokemon being requested:</label>
+      <input type="text" name="pokemonRequest">
+      <label>Your in game username:</label>
+      <input type="text" name="gameUserName">
+      <label>Pokemon being offered if any:</label>
+      <input type="text" name="pokemonOffer">
+      <input type="submit" value="Add Request">
+    </form>
+  </body>
+</html>

@@ -34,7 +34,7 @@ function create(req, res) {
         const offer = Offer(req.body);
         offer.save(function(err) {
             if (err) return res.render('offers/new');
-            res.redirect('/offers');
+            res.redirect('/offers/index');
         })
     })
     
