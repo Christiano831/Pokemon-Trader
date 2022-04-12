@@ -1,3 +1,4 @@
+const e = require('express');
 const Offer = require('../models/offer');
 
 
@@ -5,7 +6,8 @@ module.exports = {
     index,
     create,
     new: newOffer,
-    show
+    show,
+    delete: deleteOffer
 }
 
 function index(req, res) {
@@ -48,4 +50,15 @@ function show(req, res) {
     Offer.findById(req.params.id, function(err, offer) {
         res.render('offers/show', {title: 'Offer Details', offer})
     })
+}
+
+function deleteOffer(req, res) {
+    console.log(req.params);
+    Offer.findByIdAndDelete(req.params.id, function(err){
+        if(err) console.log(err);
+        console.log('succesful delete');
+    });
+    
+    console.log(req.params.id);
+    res.redirect('/offers/index');
 }
