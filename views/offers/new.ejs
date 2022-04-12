@@ -6,10 +6,29 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>Trades</h1>
-    <p>Here you can search a pokemon you are looking for!</p>
-    <p>Someone out there may be trying to trade a pokemon you want.</p>
-    <p>Or maybe you want to add a pokemon that you are willing to trade.</p>
-    <p>You can coordinate the trades with someone and get your desired pokemon!</p>
+    <div class="topnav">
+      <a href="../">Home</a>
+      <a href="../offers/index">Search Pokemon Offers</a>
+      <a href="../requests/index">Request Trade</a>
+      <% if (user) { %>
+        <a href="/logout">LOG OUT</a>
+      <% } else { %>
+        <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
+      <% } %>
+    </div>
+    <h1><%= title %> </h1>
+    <p>When making an offer please include as much details as possible for others.</p>
+    <p>Example: </p>
+    <p>Pokemon being offered. Level. Gender. Shiny. Pokemon wanted</p>
+    <br>
+    <form action="/offers" method="POST">
+      <label>Pokemon being offered:</label>
+      <input type="text" name="pokemonOffer">
+      <label>Your in game username:</label>
+      <input type="text" name="gameUserName">
+      <label>Pokemon being requested if any:</label>
+      <input type="text" name="pokemonRequest">
+      <input type="submit" value="Add Offer">
+    </form>
   </body>
 </html>
