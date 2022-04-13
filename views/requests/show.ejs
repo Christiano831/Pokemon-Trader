@@ -7,9 +7,9 @@
   </head>
   <body>
     <div class="topnav">
-        <a href="../">Home</a>
-        <a href="../offers/index">Search Pokemon Offers</a>
-        <a href="../requests/index">Request Trade</a>
+        <a href="/">Home</a>
+        <a href="/offers">Search Pokemon Offers</a>
+        <a href="/requests">Request Trade</a>
         <% if (user) { %>
           <a href="/logout">LOG OUT</a>
         <% } else { %>
@@ -19,6 +19,9 @@
 
 
     <h1><%= title %> </h1>
+
+    <button><a href="/requests/<%= request.id %> /edit">Edit Pokemon Request Details</a></button>
+
     <div>
       <div>Pokemon being requested:</div>
       <div><%= request.pokemonRequest %> </div>
@@ -27,5 +30,11 @@
       <div>Pokemon being offered if any:</div>
       <div><%= request.pokemonOffer %> </div>
     </div>
+
+    <div>
+      <form action="/requests/<%= request.id %>?_method=DELETE" method="POST">
+          <button type="submit">Delete Request</button>
+      </form>
+  </div>
   </body>
 </html>

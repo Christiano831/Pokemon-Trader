@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Requests</title>
+    <title><%= title %> </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
@@ -16,21 +16,19 @@
         <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
       <% } %>
     </div>
-
-
-    <h1><%= title %> </h1>
+    <h1>Edit Request</h1>
     <p>When making a request please include as much details as possible for others.</p>
     <p>Example: </p>
-    <p>Pokemon being requested. Level. Gender. Shiny. Pokemon offers</p>
+    <p>Pokemon being requested. Level. Gender. Shiny. Pokemon wanted</p>
     <br>
-    <form action="/requests" method="POST">
-      <label>Pokemon being requested:</label>
-      <input type="text" name="pokemonRequest">
+    <form action="/requests/<%= request.id %>?_method=PUT" method="POST">
+      <label>Pokemon being requested: <%= request.pokemonRequest %> </label>
+      <input type="text" name="pokemonRequest" value="<%= request.pokemonRequest %> ">
       <label>Your in game username:</label>
-      <input type="text" name="gameUserName">
+      <input type="text" name="gameUserName" value="<%= request.gameUserName %> ">
       <label>Pokemon being offered if any:</label>
-      <input type="text" name="pokemonOffer">
-      <input type="submit" value="Add Request">
+      <input type="text" name="pokemonOffer" value="<%= request.pokemonOffer %> ">
+      <input type="submit" value="Update Request">
     </form>
   </body>
 </html>
