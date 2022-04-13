@@ -13,7 +13,7 @@ const session = require('express-session');
 const passport = require('passport');
 const methodOverride = require('method-override');
 var indexRouter = require('./routes/index');
-var tradesRouter = require('./routes/trades');
+var commentsRouter = require('./routes/comments');
 const offersRouter = require('./routes/offers')
 const requestsRouter = require('./routes/requests')
 
@@ -54,7 +54,7 @@ app.use(function (req, res, next) {
 });
 
 app.use('/', indexRouter);
-app.use('/trades', tradesRouter);
+app.use('/comments', commentsRouter);
 app.use('/offers', offersRouter);
 app.use('/requests', requestsRouter);
 

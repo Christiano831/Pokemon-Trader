@@ -24,6 +24,7 @@
       <thead>
         <tr>
           <th>Pokemon</th>
+          <th> </th>
           <th>User</th>
           <th>Details</th>
         </tr>
@@ -32,11 +33,14 @@
         <% offers.forEach(function(o) { %>
           <tr>
             <td><%= o.pokemonOffer %></td>
+            <td><img src='<%= pokeName.sprites.front_default %>'></td>
             <td><%= o.gameUserName %></td>
             <td><a href="/offers/<%= o._id %>">Details</a></td>
+            
           </tr>
           <% }); %>
         </tbody>
+        
       </table>
 
   </body>

@@ -1,6 +1,8 @@
 // const e = require('express');
 // const { update } = require('../models/offer');
 const Offer = require('../models/offer');
+const request = require('request');
+const rootURL = 'https://pokeapi.co/api/v2/pokemon/raichu/';
 
 
 module.exports = {
@@ -14,15 +16,49 @@ module.exports = {
 }
 
 function index(req, res) {
-    // console.log(req.user, '< - req.user');
-    Offer.find({}, function(err, offers) {
-        res.render('offers/index', {
-            offers
-        });
-    });
+    
+    const options = {
+        url: `${rootURL}`
+    }
+    console.log(options, '< - options');
+    request(options, function(err, body) {
+        // console.log(body.body, '<----------------pokebody')
+        const userData = JSON.parse(body.body);
+        // console.log(userData, '-------------------userData');
+        // return userData
+        Offer.find({}, function(err, offers, pokeName) {
+            res.render('offers/index', {
+                offers,
+                pokeName: userData
+            })
+            //console.log(userData);
+        })
+        
+        
+        //console.log(userData.sprites.other['official-artwork'].front_default)
+        // res.render('offers/index', { 
+        //   title: 'Pokemon Trader Hub',
+        //   pokeName: userData
+        // });
+    
+    })
+    // console.log(baseURL);
+    // Offer.find({}, function(err, offers) {
+    //     res.render('offers/index', {
+    //         offers,
+    //         pokeName: baseURL
+            // pokeName: request(options, function(err, response, body) {
+            //     const userData = JSON.parse(body);
+            //     return userData
+            // })
+        // });
+        // console.log(offers);
+        // console.log(pokeName);
+    // });
 }
 
 function create(req, res) {
+    console.log(req.body, '<-------- req.body');
     Offer.findById(req.params.id, function(err, db) {
         req.body.user = req.user._id;
         req.body.userName = req.user.name;
@@ -74,27 +110,17 @@ function deleteOffer(req, res) {
 }
 
 function edit(req, res) {
-    // Offer.findOne({_id: req.params.id, userRecommending: req.user._id}, function(err, offer) {
-    //     if (err || !offer) return res.redirect('/offers');
-    //     res.render('offers/edit', {offer});
-    //   });
-
-    console.log(req.params, '<-------- req.params');
-    Offer.findOne(req.params.id, function(err, offer) {
+    Offer.findById(req.params.id, function(err, offer) {
         res.render('offers/edit', {title: 'Edit Offer', offer})
-        
+        console.log(offer, '<- offer')
     })
-    
-    // console.log(req.params.id);
-    // Offer.findById(req.params.id, function(err, offer) {
-    //     res.render('offers/edit', {title: 'Offer Details', offer})
-    // })
 }
 
 function updateOffer(req, res) {
     console.log(req.body, '<-------- req.body');
-    Offer.findByIdAndUpdate(req.params.id, Offer(req.body))
-    Offer.save();
-    res.redirect('/offers');
+    Offer.findByIdAndUpdate(req.params.id, req.body, {new: true}, function(err, updatedOffer){
+        console.log(updatedOffer);
+        res.redirect(`/offers/${req.params.id}`);
+    })
     // const doc = Offer.findOne()
 }

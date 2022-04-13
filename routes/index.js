@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
       title: 'Pokemon Trader Hub',
       pokeName: userData
     });
-
+    //console.log(body);
   })
 });
 
