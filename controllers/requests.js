@@ -64,27 +64,17 @@ function deleteRequest(req, res) {
 }
 
 function edit(req, res) {
-    // Request.findOne({_id: req.params.id, userRecommending: req.user._id}, function(err, request) {
-    //     if (err || !request) return res.redirect('/requests');
-    //     res.render('requests/edit', {request});
-    //   });
-
-    console.log(req.params, '<-------- req.params');
-    Request.findOne(req.params.id, function(err, request) {
+    Request.findById(req.params.id, function(err, request) {
         res.render('requests/edit', {title: 'Edit Request', request})
-        
+        console.log(request, '<- request')
     })
-    
-    // console.log(req.params.id);
-    // Request.findById(req.params.id, function(err, request) {
-    //     res.render('requests/edit', {title: 'Request Details', request})
-    // })
 }
 
 function updateRequest(req, res) {
     console.log(req.body, '<-------- req.body');
-    Request.findByIdAndUpdate(req.params.id, Request(req.body))
-    Request.save();
-    res.redirect('/requests');
+    Request.findByIdAndUpdate(req.params.id, req.body, {new: true}, function(err, updatedRequest){
+        console.log(updatedRequest);
+        res.redirect(`/requests/${req.params.id}`);
+    })
     // const doc = Request.findOne()
 }
