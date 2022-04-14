@@ -59,7 +59,7 @@ function updateComment(req, res) {
     // https://mongoosejs.com/docs/subdocs.html
     const commentSubdoc = offer.comments.id(req.params.id);
     // Ensure that the comment was created by the logged in user
-    if (!commentSubdoc.userId.equals(req.user._id)) return res.redirect(`/offers/${offer._id}`);
+    // if (!commentSubdoc.userId.equals(req.user._id)) return res.redirect(`/offers/${offer._id}`);
     // Update the text of the comment
     commentSubdoc.text = req.body.text;
     // Save the updated offer

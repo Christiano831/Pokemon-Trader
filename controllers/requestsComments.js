@@ -11,15 +11,15 @@ function create(req, res) {
     Request.findById(req.params.id, function(err, request) {
         console.log(req.params.id, '<------------req.params')
         console.log(req.body, '<------------req.body')
-        console.log(offer, '<------------- offer')
-        console.log(offer.comments, '<------------- offer.comments')
+        console.log(request, '<------------- request')
+        console.log(request.comments, '<------------- request.comments')
         req.body.user = req.user._id;
         req.body.userName = req.user.name;
         request.comments.push(req.body);
-        console.log(offer.comments, '<------------- offer.comments')
+        console.log(request.comments, '<------------- request.comments')
         request.save(function(err) {
             console.log(err);
-            console.log(offer, '<------------- offer');
+            console.log(request, '<------------- request');
             res.redirect(`/requests/${request._id}`);
         });
     });
@@ -32,9 +32,9 @@ function deleteComment(req, res){
           if (!request || err) return res.redirect(`/requests/${request._id}`);
           // Remove the subdoc (https://mongoosejs.com/docs/subdocs.html)
           request.comments.remove(req.params.id);
-          // Save the updated offer
+          // Save the updated request
           request.save(function(err) {
-            // Redirect back to the offer's show view
+            // Redirect back to the request's show view
             res.redirect(`/requests/${request._id}`);
           });
         }
@@ -59,12 +59,12 @@ function updateComment(req, res) {
     // https://mongoosejs.com/docs/subdocs.html
     const commentSubdoc = request.comments.id(req.params.id);
     // Ensure that the comment was created by the logged in user
-    if (!commentSubdoc.userId.equals(req.user._id)) return res.redirect(`/requests/${request._id}`);
+    // if (!commentSubdoc.userId.equals(req.user._id)) return res.redirect(`/requests/${request._id}`);
     // Update the text of the comment
     commentSubdoc.text = req.body.text;
-    // Save the updated offer
+    // Save the updated request
     request.save(function(err) {
-      // Redirect back to the offer's show view
+      // Redirect back to the request's show view
       res.redirect(`/requests/${request._id}`);
     });
   });

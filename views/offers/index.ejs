@@ -18,7 +18,12 @@
     </div>
     <h1>Offers Page</h1>
 
-    <a href="/offers/new">Offer a Pokemon</a>
+
+    <% if (user) { %> 
+      <a href="/offers/new">Offer a Pokemon</a>
+    <% } else { %> 
+      <td>You must log in to make a request</td>
+    <% } %> 
 
     <table>
       <thead>
@@ -35,7 +40,11 @@
             <td><%= o.pokemonOffer %></td>
             <td><img src='<%= pokeName.sprites.front_default %>'></td>
             <td><%= o.gameUserName %></td>
-            <td><a href="/offers/<%= o._id %>">Details</a></td>
+            <% if (user) { %> 
+              <td><a href="/offers/<%= o._id %>">Details</a></td>
+            <% } else { %> 
+                <td>You must log in to view details</td>
+            <% } %> 
             
           </tr>
           <% }); %>

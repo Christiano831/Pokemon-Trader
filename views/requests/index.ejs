@@ -18,7 +18,11 @@
     </div>
     <h1>Requests</h1>
 
-    <a href="../requests/new">Request a Pokemon</a>
+    <% if (user) { %> 
+      <a href="../requests/new">Request a Pokemon</a>
+    <% } else { %> 
+        <td>You must log in to make a request</td>
+    <% } %> 
 
     <table>
       <thead>
@@ -33,7 +37,12 @@
           <tr>
             <td><%= r.pokemonRequest %></td>
             <td><%= r.gameUserName %></td>
-            <td><a href="/requests/<%= r._id %>">Details</a></td>
+            <% if (user) { %> 
+              <td><a href="/requests/<%= r._id %>">Details</a></td>
+            <% } else { %> 
+                <td>You must log in to view details</td>
+            <% } %> 
+            
           </tr>
           <% }); %>
         </tbody>

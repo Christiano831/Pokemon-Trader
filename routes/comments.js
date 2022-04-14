@@ -6,10 +6,10 @@ const rootURL = 'https://pokeapi.co/api/v2/pokemon/pikachu/';
 const commentsCtrl = require('../controllers/comments');
 
 
-router.delete('/:id', commentsCtrl.delete);
+router.delete('/comments/:id', commentsCtrl.delete);
 router.post('/offers/:id/comments', commentsCtrl.create);
 router.get('/:id/edit', commentsCtrl.edit);
-router.put('/:id', commentsCtrl.update)
+router.put('/comments/:id', commentsCtrl.update)
 
 
 router.get('/', function(req, res, next) {

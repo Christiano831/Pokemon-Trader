@@ -18,7 +18,9 @@
       </div>
     <h1><%= title %> </h1>
 
+    <% if (user._id.equals(offer.user)) { %> 
     <button><a href="/offers/<%= offer.id %>/edit">Edit Pokemon Offer Details</a></button>
+    <% } %> 
     
     <div>
       <div>Pokemon being offered:</div>
@@ -29,20 +31,33 @@
       <div><%= offer.pokemonRequest %> </div>
     </div>
 
-    <div>
+
+    <% if (user._id.equals(offer.user)) { %> 
+      <div>
         <form action="/offers/<%= offer.id %>?_method=DELETE" method="POST">
             <button type="submit">Delete Offer</button>
         </form>
     </div>
+    <% } %> 
+    
   
     <div>
       <% if (user) { %> 
         <% offer.comments.forEach(function(c) { %> 
-          <p> <%= c.text %>  </p>
-          
+          <p> <%= c.text %> 
+            <% if (user._id.equals(offer.user)) { %> 
+              <form action="/comments/<%= c._id %>?_method=PUT" method="POST">
+                <!-- Value attribute is being set to the comment's current text -->
+                <input name="text" value="<%= c.text %>">
+                <button type="submit">UPDATE COMMENT</button>
+              </form>
+              <form action="/comments/<%= c._id %>?_method=DELETE" method="POST">
+              <button type="submit">X</button>
+              </form>
+            <% } %> 
+          </p>
         <% }) %>
       <% } %>
-      <p><%= console.log(offer) %> </p>
     </div>
 
     <form action="/offers/<%= offer._id %>/comments" method="POST">
