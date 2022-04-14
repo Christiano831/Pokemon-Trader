@@ -35,6 +35,25 @@
       <form action="/requests/<%= request.id %>?_method=DELETE" method="POST">
           <button type="submit">Delete Request</button>
       </form>
+
+      <div>
+        <% if (user) { %> 
+          <% request.comments.forEach(function(c) { %> 
+            <p> <%= c.text %>  </p>
+            
+          <% }) %>
+        <% } %>
+        <p><%= console.log(request) %> </p>
+      </div>
+  
+      <form action="/requests/<%= request._id %>/comments" method="POST">
+        <!-- Be sure name attributes of inputs match the model properties -->
+        <input name="text">
+          <button type="submit">ADD COMMENT</button>
+        </input>
+      </form>
+
+
   </div>
   </body>
 </html>

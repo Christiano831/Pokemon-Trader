@@ -12,7 +12,7 @@ module.exports = {
 }
 
 function index(req, res) {
-    console.log(req.user, '< - req.user');
+    // console.log(req.user, '< - req.user');
     Request.find({}, function(err, requests) {
         res.render('requests/index', {
             requests
@@ -24,10 +24,10 @@ function create(req, res) {
     Request.findById(req.params.id, function(err, db) {
         req.body.user = req.user._id;
         req.body.userName = req.user.name;
-        console.log(req.body.user);
-        console.log(req.body.userName);
+        // console.log(req.body.user);
+        // console.log(req.body.userName);
 
-        console.log(db);
+        // console.log(db);
         
         //db.requests.push(req.body);
         // db.save(function(err) {
@@ -56,24 +56,24 @@ function show(req, res) {
 function deleteRequest(req, res) {
     Request.findByIdAndDelete(req.params.id, function(err){
         if(err) console.log(err);
-        console.log('succesful delete');
+        // console.log('succesful delete');
     });
     
-    console.log(req.params.id);
+    // console.log(req.params.id);
     res.redirect('/requests');
 }
 
 function edit(req, res) {
     Request.findById(req.params.id, function(err, request) {
         res.render('requests/edit', {title: 'Edit Request', request})
-        console.log(request, '<- request')
+        // console.log(request, '<- request')
     })
 }
 
 function updateRequest(req, res) {
     console.log(req.body, '<-------- req.body');
     Request.findByIdAndUpdate(req.params.id, req.body, {new: true}, function(err, updatedRequest){
-        console.log(updatedRequest);
+        // console.log(updatedRequest);
         res.redirect(`/requests/${req.params.id}`);
     })
     // const doc = Request.findOne()

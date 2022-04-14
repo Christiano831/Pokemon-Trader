@@ -9,15 +9,17 @@ module.exports = {
 
 function create(req, res) {
     Offer.findById(req.params.id, function(err, offer) {
-        console.log(req.params.id, '<------------req.params')
-        console.log(req.body, '<------------req.body')
-        console.log(offer, '<------------- offer')
-        console.log(offer.comments, '<------------- offer.comments')
-        req.body.userId = req.user._id;
+        // console.log(req.params.id, '<------------req.params')
+        // console.log(req.body, '<------------req.body')
+        // console.log(offer, '<------------- offer')
+        // console.log(offer.comments, '<------------- offer.comments')
+        req.body.user = req.user._id;
         req.body.userName = req.user.name;
-        offer.comments.push('HEeelooooo????');
-        console.log(offer.comments, '<------------- offer.comments')
+        offer.comments.push(req.body);
+        // console.log(offer.comments, '<------------- offer.comments')
         offer.save(function(err) {
+            // console.log(err);
+            // console.log(offer, '<------------- offer');
             res.redirect(`/offers/${offer._id}`);
         });
     });

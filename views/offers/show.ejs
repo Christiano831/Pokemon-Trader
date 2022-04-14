@@ -38,9 +38,11 @@
     <div>
       <% if (user) { %> 
         <% offer.comments.forEach(function(c) { %> 
-          <p><%= c.user %>: <%= c.text %>  </p>
+          <p> <%= c.text %>  </p>
+          
         <% }) %>
       <% } %>
+      <p><%= console.log(offer) %> </p>
     </div>
 
     <form action="/offers/<%= offer._id %>/comments" method="POST">

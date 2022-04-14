@@ -27,7 +27,11 @@ const offersSchema = new Schema({
     pokemonRequest: {
         type: String
     },
-    comments: [commentsSchema]
+    comments: [commentsSchema],
+});
+
+offersSchema.virtual('baseURL').get(function(){
+    return 'https://pokeapi.co/api/v2/pokemon/' + this.pokemonOffer + '/';
 });
 
 module.exports = mongoose.model('Offer', offersSchema);
