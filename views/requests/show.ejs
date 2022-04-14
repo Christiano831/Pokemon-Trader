@@ -40,14 +40,18 @@
         <% if (user) { %> 
           <% request.comments.forEach(function(c) { %> 
             <p> <%= c.text %>  </p>
-            <form action="/requestComments/<%= c._id %>?_method=PUT" method="POST">
-              <!-- Value attribute is being set to the comment's current text -->
-              <input name="text" value="<%= c.text %>">
-              <button type="submit">UPDATE COMMENT</button>
-            </form>
-            <form action="/requestComments/<%= c._id %>?_method=DELETE" method="POST">
-            <button type="submit">X</button>
-            </form>
+
+            <% if (user._id.equals(c.user)) { %> 
+              <form action="/requestComments/<%= c._id %>?_method=PUT" method="POST">
+                <!-- Value attribute is being set to the comment's current text -->
+                <input name="text" value="<%= c.text %>">
+                <button type="submit">UPDATE COMMENT</button>
+              </form>
+            <%} if (user._id.equals(c.user)) { %> 
+              <form action="/requestComments/<%= c._id %>?_method=DELETE" method="POST">
+              <button type="submit">X</button>
+              </form>
+            <% } %> 
           <% }) %>
         <% } %>
       </div>
