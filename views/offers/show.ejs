@@ -34,5 +34,20 @@
             <button type="submit">Delete Offer</button>
         </form>
     </div>
+  
+    <div>
+      <% if (user) { %> 
+        <% offer.comments.forEach(function(c) { %> 
+          <p><%= c.user %>: <%= c.text %>  </p>
+        <% }) %>
+      <% } %>
+    </div>
+
+    <form action="/offers/<%= offer._id %>/comments" method="POST">
+      <!-- Be sure name attributes of inputs match the model properties -->
+      <input name="text">
+        <button type="submit">ADD COMMENT</button>
+      </input>
+    </form>
   </body>
 </html>

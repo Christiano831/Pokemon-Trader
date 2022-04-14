@@ -20,7 +20,7 @@ function index(req, res) {
     const options = {
         url: `${rootURL}`
     }
-    console.log(options, '< - options');
+    // console.log(options, '< - options');
     request(options, function(err, body) {
         // console.log(body.body, '<----------------pokebody')
         const userData = JSON.parse(body.body);
@@ -58,7 +58,7 @@ function index(req, res) {
 }
 
 function create(req, res) {
-    console.log(req.body, '<-------- req.body');
+    // console.log(req.body, '<-------- req.body');
     Offer.findById(req.params.id, function(err, db) {
         req.body.user = req.user._id;
         req.body.userName = req.user.name;
@@ -79,8 +79,8 @@ function create(req, res) {
             if (err) return res.render('offers/new');
             res.redirect('/offers');
         })
-        console.log(req.body, '<-------- req.body');
-        console.log(obj, 'stringyfieeeedddddd')
+        // console.log(req.body, '<-------- req.body');
+        // console.log(obj, 'stringyfieeeedddddd')
     })
     
 }
@@ -90,36 +90,37 @@ function newOffer(req, res) {
 }
 
 function show(req, res) {
-    console.log(req.body, '<-------- req.body');
-    console.log(req.params, '<-------- req.params');
+    //console.log(req.body, '<-------- req.body');
+    //console.log(req.params, '<-------- req.params');
 
     Offer.findById(req.params.id, function(err, offer) {
         res.render('offers/show', {title: 'Offer Details', offer})
-        console.log(offer, '<- offer')
+        // console.log(offer, '<- offer in the show cntrl')
+
     })
 }
 
 function deleteOffer(req, res) {
     Offer.findByIdAndDelete(req.params.id, function(err){
         if(err) console.log(err);
-        console.log('succesful delete');
+        // console.log('succesful delete');
     });
     
-    console.log(req.params.id);
+    // console.log(req.params.id);
     res.redirect('/offers');
 }
 
 function edit(req, res) {
     Offer.findById(req.params.id, function(err, offer) {
         res.render('offers/edit', {title: 'Edit Offer', offer})
-        console.log(offer, '<- offer')
+        // console.log(offer, '<- offer')
     })
 }
 
 function updateOffer(req, res) {
-    console.log(req.body, '<-------- req.body');
+    // console.log(req.body, '<-------- req.body');
     Offer.findByIdAndUpdate(req.params.id, req.body, {new: true}, function(err, updatedOffer){
-        console.log(updatedOffer);
+        // console.log(updatedOffer);
         res.redirect(`/offers/${req.params.id}`);
     })
     // const doc = Offer.findOne()

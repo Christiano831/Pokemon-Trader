@@ -1,9 +1,19 @@
-var express = require('express');
-var router = express.Router();
+var router = require('express').Router();
+const passport = require('passport');
+const request = require('request');
+const axios = require('axios');
+const rootURL = 'https://pokeapi.co/api/v2/pokemon/pikachu/';
+const commentsCtrl = require('../controllers/comments');
 
-/* GET users listing. */
+
+router.delete('/:id', commentsCtrl.delete);
+router.post('/offers/:id/comments', commentsCtrl.create);
+router.get('/:id/edit', commentsCtrl.edit);
+router.put('/:id', commentsCtrl.update)
+
+
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+    res.send('respond with a resource');
+  });
 
 module.exports = router;

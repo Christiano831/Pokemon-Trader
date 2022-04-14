@@ -54,7 +54,7 @@ app.use(function (req, res, next) {
 });
 
 app.use('/', indexRouter);
-app.use('/comments', commentsRouter);
+app.use('/', commentsRouter);
 app.use('/offers', offersRouter);
 app.use('/requests', requestsRouter);
 
