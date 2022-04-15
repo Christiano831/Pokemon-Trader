@@ -4,6 +4,9 @@ Allow access to trade pokemon with trainers
 ## About
 This is the second project assigned by General Assembly: Software Engineering Immersive program. We are using what we learned in Express, Node, MongoDB, and Mongoose.
 
+## Heroku Link
+https://pokemon-trader-by-cj.herokuapp.com/
+
 ## User Story
 As a Pokemon Trainer I want a website where I can communicate with others about trading pokemon.
 As a creator I want to implement a Pokemon API so users can see some pokemon info.
