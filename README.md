@@ -31,6 +31,18 @@ Ability to add a pokemon to the list of offered pokemon.
 Ability to comment on posts.
 Ability to delete posts/comments.
 
+## Technologies Used
+
+-HTML
+-CSS
+-Node.js
+-Express
+-MongoDB
+-Mongoose
+-Heroku
+-Google OAuth 2.0
+-PokeAPI
+
 ## Trello Board link
 
 https://trello.com/invite/b/wpoDm0lF/f1411f17b0615d20478622f8e8ec02c5/pokemon-trading-hub
