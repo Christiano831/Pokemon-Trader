@@ -10,9 +10,6 @@ const commentsSchema = new Schema({
         ref: 'User',
         required: true
     },
-    // commentUserId: {
-    //     type:Schema.Types.ObjectId
-    // }
 });
 
 const offersSchema = new Schema({

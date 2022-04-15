@@ -1,8 +1,4 @@
 var router = require('express').Router();
-const passport = require('passport');
-const request = require('request');
-const axios = require('axios');
-const rootURL = 'https://pokeapi.co/api/v2/pokemon/pikachu/';
 const requestsCtrl = require('../controllers/requests');
 
 

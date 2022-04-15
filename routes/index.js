@@ -1,10 +1,8 @@
 var router = require('express').Router();
-// var router = express.Router();
 const passport = require('passport');
 const request = require('request');
-const axios = require('axios');
 const rootURL = 'https://pokeapi.co/api/v2/pokemon/pikachu/';
-//const request = require('../server');
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -14,12 +12,10 @@ router.get('/', function(req, res, next) {
   }
   request(options, function(err, response, body) {
     const userData = JSON.parse(body);
-    //console.log(userData.sprites.other['official-artwork'].front_default)
     res.render('index', { 
       title: 'Pokemon Trader Hub',
       pokeName: userData
     });
-    //console.log(body);
   })
 });
 
@@ -33,8 +29,8 @@ router.get('/auth/google', passport.authenticate(
 router.get('/oauth2callback', passport.authenticate(
   'google',
   {
-    successRedirect : '/', // where do you want the client to go after you login 
-    failureRedirect : '/' // where do you want the client to go if login fails
+    successRedirect : '/',
+    failureRedirect : '/'
   }
 ));
 

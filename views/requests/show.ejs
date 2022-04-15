@@ -43,7 +43,6 @@
 
             <% if (user._id.equals(c.user)) { %> 
               <form action="/requestComments/<%= c._id %>?_method=PUT" method="POST">
-                <!-- Value attribute is being set to the comment's current text -->
                 <input name="text" value="<%= c.text %>">
                 <button type="submit">UPDATE COMMENT</button>
               </form>
@@ -57,7 +56,6 @@
       </div>
   
       <form action="/requests/<%= request._id %>/requestsComments" method="POST">
-        <!-- Be sure name attributes of inputs match the model properties -->
         <input name="text">
           <button type="submit">ADD COMMENT</button>
         </input>

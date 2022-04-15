@@ -28,6 +28,7 @@
       <thead>
         <tr>
           <th>Pokemon</th>
+          <th></th>
           <th>User</th>
           <th>Details</th>
         </tr>
@@ -36,6 +37,7 @@
         <% requests.forEach(function(r) { %>
           <tr>
             <td><%= r.pokemonRequest %></td>
+            <td><img src='<%= pokeName.sprites.front_default %>'></td>
             <td><%= r.gameUserName %></td>
             <% if (user) { %> 
               <td><a href="/requests/<%= r._id %>">Details</a></td>
