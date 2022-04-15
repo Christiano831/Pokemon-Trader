@@ -31,13 +31,28 @@ function index(req, res) {
 
 function create(req, res) {
     Request.findById(req.params.id, function(err, db) {
-        req.body.user = req.user._id;
-        const requesting = Request(req.body);
-        requesting.save(function(err) {
-            if (err) return res.render('requests/new');
-            res.redirect('/requests');
-        })
-    }) 
+        req.body.newURL = 'https://pokeapi.co/api/v2/pokemon/' + req.body.pokemonRequest.toLowerCase();
+        const options = {
+            url: `${req.body.newURL}`
+        }
+        request(options, function(err, body) {
+            try {
+                JSON.parse(body.body);
+            } catch (err) {
+                return res.redirect('/requests/new');
+            }
+            const userData = JSON.parse(body.body);
+            const userDataNumber = userData.id;
+            const userDataString = userDataNumber.toString();
+            req.body.pokemonId = userDataString;
+            req.body.user = req.user._id;
+            const requesting = Request(req.body);
+            requesting.save(function(err) {
+                if (err) return res.render('requests/new');
+                res.redirect('/requests');
+            })
+        })  
+    })
 }
 
 function newRequest(req, res) {
@@ -45,8 +60,17 @@ function newRequest(req, res) {
 }
 
 function show(req, res) {
-    Request.findById(req.params.id, function(err, request) {
-        res.render('requests/show', {title: 'Request Details', request})
+    Request.findById(req.params.id, function(err, requesting) {
+        const options = {
+            url: requesting.newURL
+        }
+        request(options, function(err, body) {
+            Request.findById(req.params.id, function(err, requesting, pokeSprite) {
+                const userData = JSON.parse(body.body);
+                res.render('requests/show', {title: 'Request Details', requesting, pokeSprite: userData})
+            })
+        })
+        
     })
 }
 

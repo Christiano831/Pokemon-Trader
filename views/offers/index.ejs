@@ -29,7 +29,7 @@
       <thead>
         <tr>
           <th>Pokemon</th>
-          <th> </th>
+          <th>Pokemon Image</th>
           <th>User</th>
           <th>Details</th>
         </tr>
@@ -38,7 +38,7 @@
         <% offers.forEach(function(o) { %>
           <tr>
             <td><%= o.pokemonOffer %></td>
-            <td><img src='<%= pokeName.sprites.front_default %>'></td>
+            <td><img src='<%= `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${o.pokemonId}.png` %>'></td>
             <td><%= o.gameUserName %></td>
             <% if (user) { %> 
               <td><a href="/offers/<%= o._id %>">Details</a></td>

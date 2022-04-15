@@ -16,6 +16,7 @@ const requestSchema = new Schema({
     pokemonOffer: {
         type: String
     },
+    pokemonId: {type: String},
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
@@ -27,7 +28,9 @@ const requestSchema = new Schema({
     pokemonRequest: {
         type: String
     },
+    pokemonRequestId: {type: String},
     comments: [requestCommentsSchema],
+    newURL: {type: String}
 });
 
 module.exports = mongoose.model('Request', requestSchema);

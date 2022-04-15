@@ -31,14 +31,28 @@ function index(req, res) {
 
 function create(req, res) {
     Offer.findById(req.params.id, function(err, db) {
-        req.body.user = req.user._id;
-        const offer = Offer(req.body);
-        offer.save(function(err) {
-            if (err) return res.render('offers/new');
-            res.redirect('/offers');
-        })
+        req.body.newRequestURL = 'https://pokeapi.co/api/v2/pokemon/' + req.body.pokemonOffer.toLowerCase();
+        const options = {
+            url: `${req.body.newRequestURL}`
+        }
+        request(options, function(err, body) {
+            try {
+                JSON.parse(body.body);
+            } catch (err) {
+                return res.redirect('/offers/new');
+            }
+            const userData = JSON.parse(body.body);
+            const userDataNumber = userData.id;
+            const userDataString = userDataNumber.toString();
+            req.body.pokemonId = userDataString;
+            req.body.user = req.user._id;
+            const offer = Offer(req.body);
+            offer.save(function(err) {
+                if (err) return res.render('offers/new');
+                res.redirect('/offers');
+            })
+        })  
     })
-    
 }
 
 function newOffer(req, res) {
@@ -47,7 +61,16 @@ function newOffer(req, res) {
 
 function show(req, res) {
     Offer.findById(req.params.id, function(err, offer) {
-        res.render('offers/show', {title: 'Offer Details', offer})
+        const options = {
+            url: offer.newRequestURL
+        }
+        request(options, function(err, body) {
+            Offer.findById(req.params.id, function(err, offer, pokeSprite) {
+                const userData = JSON.parse(body.body);
+                res.render('offers/show', {title: 'Offer Details', offer, pokeSprite: userData})
+            })
+        })
+        
     })
 }
 

@@ -20,25 +20,25 @@
 
     <h1><%= title %> </h1>
 
-    <button><a href="/requests/<%= request.id %>/edit">Edit Pokemon Request Details</a></button>
+    <button><a href="/requests/<%= requesting.id %>/edit">Edit Pokemon Request Details</a></button>
 
     <div>
       <div>Pokemon being requested:</div>
-      <div><%= request.pokemonRequest %> </div>
+      <div><%= requesting.pokemonRequest %> <img src='<%= pokeSprite.sprites.front_default %>'></div>
       <div>Your in game username:</div>
-      <div><%= request.gameUserName %> </div>
+      <div><%= requesting.gameUserName %> </div>
       <div>Pokemon being offered if any:</div>
-      <div><%= request.pokemonOffer %> </div>
+      <div><%= requesting.pokemonOffer %> </div>
     </div>
 
     <div>
-      <form action="/requests/<%= request.id %>?_method=DELETE" method="POST">
+      <form action="/requests/<%= requesting.id %>?_method=DELETE" method="POST">
           <button type="submit">Delete Request</button>
       </form>
 
       <div>
         <% if (user) { %> 
-          <% request.comments.forEach(function(c) { %> 
+          <% requesting.comments.forEach(function(c) { %> 
             <p> <%= c.text %>  </p>
 
             <% if (user._id.equals(c.user)) { %> 
@@ -55,7 +55,7 @@
         <% } %>
       </div>
   
-      <form action="/requests/<%= request._id %>/requestsComments" method="POST">
+      <form action="/requests/<%= requesting._id %>/requestsComments" method="POST">
         <input name="text">
           <button type="submit">ADD COMMENT</button>
         </input>

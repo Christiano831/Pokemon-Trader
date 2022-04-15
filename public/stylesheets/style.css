@@ -49,3 +49,14 @@ h1 {
 .login img {
   height: 30px;
 }
+
+table {
+  width: 80%;
+}
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+th {
+  width: 30%;
+}

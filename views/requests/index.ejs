@@ -37,7 +37,7 @@
         <% requests.forEach(function(r) { %>
           <tr>
             <td><%= r.pokemonRequest %></td>
-            <td><img src='<%= pokeName.sprites.front_default %>'></td>
+            <td><img src='<%= `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${r.pokemonId}.png` %>'></td>
             <td><%= r.gameUserName %></td>
             <% if (user) { %> 
               <td><a href="/requests/<%= r._id %>">Details</a></td>
